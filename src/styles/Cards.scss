@@ -1,7 +1,11 @@
 .cont {
-    display:inline
+    display:table;
+    height:500px;
+    width: 500px;
 }
 
 .cardConteiner {
+    align-items: center;
+    justify-content: center;
     border:1px solid red;
 }

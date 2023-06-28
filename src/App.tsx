@@ -23,10 +23,12 @@ function App() {
     // })
   },[])
   return (
-    <>
-    <Nav/>
-    <Cards games={games}/>
-    </>
+    <div>
+      <Nav/>
+    <div className='app'>
+      <Cards games={games}/>
+    </div>
+    </div>
   )
 }
 
