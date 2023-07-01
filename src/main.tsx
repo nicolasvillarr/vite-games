@@ -6,14 +6,19 @@ import './index.css'
 import DetailsCard from './components/DetailsCard.tsx';
 import { Provider } from 'react-redux/es/exports';
 import { store } from './Store/store.ts';
+import Error from './helpers/Error.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement:<Error />
   },
   {
     path:"/details/:id",
     element:<DetailsCard />
+  },
+  {
+    path:"/platform",
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

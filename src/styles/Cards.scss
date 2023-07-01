@@ -1,11 +1,19 @@
 .cont {
-    display:table;
-    height:500px;
-    width: 500px;
+    display: flex; 
+    flex-wrap: wrap; // contenedor de una o varias líneas
+    justify-content: center;
+
 }
 
 .cardConteiner {
+    position: relative;
+    margin: 30px 10px 90px 10px;
     align-items: center;
-    justify-content: center;
+}
+
+.Card {
+    height: 700px;
+    width: 410px;
     border:1px solid red;
 }
+
