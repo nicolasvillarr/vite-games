@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect } from "react"
-import { GamesDetailsSlice, addDetails, getDetails } from "../Store/features/detailsSlide"
+import { addDetails, getDetails } from "../Store/features/detailsSlide"
 import { useAppDispatch, useAppSelector } from "../Store/store"
 import { useLocation } from "react-router-dom"
 
@@ -46,9 +46,9 @@ console.log(data.minimum_system_requirements)
   // console.log("🚀 ~ file: DetailsCard.tsx:24 ~ DetailsCard ~ info:", info)
   return (
     <>
-    <div>Detalles del juego</div>
-    <h1>title: {info?.title}</h1>
-<img src={info?.thumbnail} alt="" />
+    <div className="text-center bg-center">
+    <h1>{info?.title}</h1>
+<img src={info?.thumbnail} width={500} height={300} alt="" />
 <h3>{info?.description}</h3>
 <a href={info?.freetogame_profile_url}>{info?.freetogame_profile_url}</a>
 <h3>{info?.genre}</h3>
@@ -64,6 +64,7 @@ console.log(data.minimum_system_requirements)
 <h3>{info?.freetogame_profile_url}</h3>
 <h3>{info?.game_url}</h3>
     <h5>{info?.id}</h5>
+    </div>
     </>
   )
 }
