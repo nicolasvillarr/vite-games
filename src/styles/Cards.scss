@@ -14,16 +14,20 @@
 .Card {
     height: 800px;
     width: 410px;
-    border-radius: 15px;
-    border:1px solid red;
+    border-radius: 3px;
+    border: 1px solid #f96d00;
     .title{
-        display: flex;
         align-items: center;
-        position:absolute ;
-        margin: 50px;
+    }
+    .fixImage{
+        border: 1px solid #141010;
+        border-radius: 7px;
+    }.fixImage:hover{
+        transition: 200ms;
+        border: 1px solid #900a63;
     }
     .subTitle{
-        margin-top: 150px;
+        text-align: center;
     }
 }
 

@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { GamesDetailsSlice } from "./features/detailsSlide";
+import { GamesSlice } from "./features/gamesSlide";
+
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
     reducer:{
-        GamesDetailsState: GamesDetailsSlice.reducer
+        GamesDetailsState: GamesDetailsSlice.reducer,
+        GamesNamesSlide: GamesSlice.reducer
         }
 })
 

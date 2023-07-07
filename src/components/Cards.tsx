@@ -1,9 +1,7 @@
-import { dataGames } from "../types/types"
+import { Props } from "../types/types"
 import "../styles/Cards.scss"
 import { Link } from "react-router-dom"
-interface Props {
-    games: Array<dataGames>
-}
+
 export default function Cards ({games}:Props) {
       return (
     <div className="cont">
@@ -11,14 +9,14 @@ export default function Cards ({games}:Props) {
             games.map(e => {
                 return(
                     <div className="cardConteiner">
-                        <div className="Card">
-                        <h1 className="text-center title">Titulo {e.title}</h1>
-                        <h3 className="text-center subTitle">Genero {e.genre}</h3>
+                        <div className="Card ">
+                        <h1 className="text-center title">{e.title}</h1>
+                        <h3 className=" subTitle">Genero {e.genre}</h3>
                         <div className="flex justify-center">
-                            <img className="" src={e.thumbnail} width={400} alt="" />
+                            <img className=" fixImage shadow-red-800" src={e.thumbnail} width={400} alt="" />
                         </div>
                         <div className="text-center">
-                        <Link  to={`details/${e.id}`}>Game details</Link>
+                        <Link  to={`details/${e.id}`}>More details</Link>
                         </div>
                         <h5 className="text-center">{e.short_description}</h5>
                         <h5 className="text-center">Platform {e.platform}</h5>

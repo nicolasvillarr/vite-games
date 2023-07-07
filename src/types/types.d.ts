@@ -33,3 +33,11 @@ export interface GamesDetails{
     storage:string
     },
 }
+
+interface Props {
+  games: Array<dataGames>
+}
+
+interface PropsPagesGames{
+  pagesGames: Array<dataGames>
+}

@@ -1,8 +1,8 @@
-export default function Paginado({countyForPage, allCountry, paginado}:any) {
+export default function Paginado({gamesForPage, allGames, paginado}:any) {
     
     const numPag = []
 
-    for (let i = 1; i <= Math.ceil(allCountry/countyForPage); i++) {
+    for (let i = 1; i <= Math.ceil(allGames/gamesForPage); i++) {
         numPag.push(i)    
     }
 

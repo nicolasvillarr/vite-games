@@ -2,7 +2,10 @@ import { Fragment } from "react"
 import "../styles/Nav.scss"
 import { Menu, Transition } from "@headlessui/react"
 import { BsChevronDown } from 'react-icons/bs';
-export default function Nav() {
+import SearchBar from "./SearchBar";
+import { PropsPagesGames } from "../types/types";
+
+export default function Nav({pagesGames}:PropsPagesGames) {
   function classNames(...classes: [string, string]) {
     return classes.filter(Boolean).join(' ')
   }
@@ -15,7 +18,7 @@ export default function Nav() {
         
       <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-500 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 items-center">
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-500 px-2 text-sm font-semibold text-gray-900 ring-gray-300 items-center">
           Options
           <BsChevronDown className="" aria-hidden="true" />
         </Menu.Button>
@@ -78,9 +81,7 @@ export default function Nav() {
     </Menu>
 
       <h3>favorites games</h3>
-      <form className="nav">
-        <input placeholder='🔎 search game'/>
-      </form>
+      <SearchBar pagesGames={pagesGames} />
     </div>
   )
 }
