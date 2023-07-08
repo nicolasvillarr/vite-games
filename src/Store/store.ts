@@ -7,8 +7,8 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 export const store = configureStore({
     reducer:{
         GamesDetailsState: GamesDetailsSlice.reducer,
-        GamesNamesSlide: GamesSlice.reducer
-        }
+        NamesSlide: GamesSlice.reducer
+    }
 })
 
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;

@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import { PropsPagesGames } from "../types/types";
-// import { useAppDispatch } from "../Store/store";
-// import { getGames } from "../Store/features/gamesSlide";
+import { PropsPagesGames,dataGames } from "../types/types";
+import { useAppDispatch } from "../Store/store";
+import { getGames } from "../Store/features/gamesSlide";
 
 export default function SearchBar({pagesGames}:PropsPagesGames) {
-    // const dispatch = useAppDispatch()
-
+    const dispatch = useAppDispatch()
+    
     const [name, setName] = useState('')
     const filterGames = pagesGames.filter(e => e.title.toUpperCase().includes(name.toUpperCase()));
-    console.log("🚀 ~ file: SearchBar.tsx:18 ~ Search   Bar ~ filterGames:", filterGames)
-    // dispatch(getGames(games))
+    const data = filterGames.filter(e=>e)
+    console.log("🚀 ~ file: SearchBar.tsx:12 ~ SearchBar ~ data:", data)
+    // getGames(filterGames)
+    // console.log("🚀 ~ file: SearchBar.tsx:18 ~ Search   Bar ~ filterGames:", filterGames)
+    // dispatch(getGames({
+    //     id:data.id
+    // }))
 
     
     function handleSearch(e:React.ChangeEvent<HTMLInputElement>) {
