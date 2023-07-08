@@ -4,36 +4,30 @@ import { RootState } from "../store";
 
 interface GamesState {
     GamesNames: dataGames[];
+    allGames:dataGames[];
 }
 
 const initialState: GamesState = { // estado inicial
-    GamesNames:[] // array vacio
+    GamesNames:[],
+    allGames:[]
 };
 
 export const GamesSlice = createSlice({
     name:"games",
     initialState,
     reducers:{
-        games:(state, action:PayloadAction<dataGames> )=> {
-            // state.GamesNames = action.payload
-            // state.GamesNames.filter(e => e.title.toUpperCase().includes(action.payload.title.toUpperCase()))
-            console.log("🚀 ~ file: gamesSlide.ts:19 ~ GamesNames:", state.GamesNames)
-            state.GamesNames.push({
-                id: action.payload.id,
-                title:action.payload.title,
-                thumbnail:action.payload.thumbnail,
-                short_description:action.payload.short_description,
-                game_url:action.payload.game_url,
-                genre:action.payload.genre,
-                platform:action.payload.platform,
-                publisher:action.payload.publisher,
-                developer:action.payload.developer,
-                release_date:action.payload.release_date,
-                freetogame_profile_url:action.payload.freetogame_profile_url,
-            })
+        searchGames:(state, action:PayloadAction<dataGames[]> )=> {
+            state.GamesNames = action.payload
+            // state.allGames = action.payload
+            console.log("🚀 ~ file: gamesSlide.ts:19 ~ state.GamesNames:", state.GamesNames)
         },
+        allGames:(state, action:PayloadAction<dataGames[]>)=>{
+            state.allGames = action.payload
+            console.log("🚀 ~ file: gamesSlide.ts:26 ~ state.allGames:", state.allGames)
+
+        }
     },
 })
 export default GamesSlice.reducer
-export const getGames = (state: RootState) => state.NamesSlide
-export const { games } = GamesSlice.actions
+export const getGames = (state: RootState) => state.NamesSlide.allGames
+export const { searchGames, allGames } = GamesSlice.actions

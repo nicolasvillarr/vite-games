@@ -1,25 +1,33 @@
 import { useEffect, useState } from 'react'
 import './styles/App.scss'
 import Nav from './components/Nav'
-import { dataGames, Props } from './types/types'
+import { dataGames } from './types/types'
 import Cards from './components/Cards'
 // import axios from 'axios'
 import Paginado from './helpers/Paginado'
 import mock from "./helpers/mock/mock.json"
+import { allGames, getGames, searchGames } from './Store/features/gamesSlide'
+import { useAppDispatch, useAppSelector } from './Store/store'
 
 function App() {
-   const apiData = mock
-  const [games, setGames] = useState <dataGames[]>([])  // <Array <dataGames>>
+  const dispatch = useAppDispatch()
+  const apiData = mock
+  // const [games, setGames] = useState <dataGames[]>([])  // <Array <dataGames>>
 
   useEffect(()=> {
     // axios.get("https://www.freetogame.com/api/games",)
     // .then(r =>{
-    //   const data = r.data
-    //   setGames(data)
-    // })
-    setGames(apiData)
-  },[])
+      //   const data = r.data
+      //   setGames(data)
+      // })
+      // setGames(apiData)
+      dispatch(allGames(apiData));
+    },[])
 
+  const games = useAppSelector(getGames)
+  console.log("🚀 ~ file: App.tsx:28 ~ App ~ games:", games)
+
+  // console.log("🚀 ~ file: App.tsx:28 ~ App ~ games:", gamess)
   
   const [actualPagina, setActualPagina] = useState(1)
   const [pages] = useState(10)
