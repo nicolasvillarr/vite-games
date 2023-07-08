@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { PropsPagesGames } from "../types/types";
-// import { useAppDispatch } from "../Store/store";
-// import { getGames } from "../Store/features/gamesSlide";
+import { useAppDispatch } from "../Store/store";
+import { searchGames, getGames } from "../Store/features/gamesSlide";
 
 export default function SearchBar({pagesGames}:PropsPagesGames) {
-    // const dispatch = useAppDispatch()
-
+    const dispatch = useAppDispatch()
+    
     const [name, setName] = useState('')
-    const filterGames = pagesGames.filter(e => e.title.toUpperCase().includes(name.toUpperCase()));
-    console.log("🚀 ~ file: SearchBar.tsx:18 ~ Search   Bar ~ filterGames:", filterGames)
-    // dispatch(getGames(games))
+    // const info = useAppSelector(getGames).GamesNames.map(e=>e)
 
     
     function handleSearch(e:React.ChangeEvent<HTMLInputElement>) {
@@ -21,8 +19,10 @@ export default function SearchBar({pagesGames}:PropsPagesGames) {
     function handleBtn(e:React.FormEvent<HTMLButtonElement>) {
         e.preventDefault()
         if(!name){
-            alert('falto poner un nombre :p') 
+            // alert('falto poner un nombre :p') 
         }else {
+            const filteredGames = pagesGames.filter(e => e.title.toUpperCase().includes(name.toUpperCase()));
+            dispatch(searchGames(filteredGames));
             // dispatch(getGames(filterGames))
                 }
         setName('')
