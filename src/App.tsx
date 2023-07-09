@@ -14,6 +14,9 @@ function App() {
   const apiData = mock
   // const [games, setGames] = useState <dataGames[]>([])  // <Array <dataGames>>
 
+  const search = useAppSelector(getGames).GamesNames
+  const games = useAppSelector(getGames).allGames
+
   useEffect(()=> {
     // axios.get("https://www.freetogame.com/api/games",)
     // .then(r =>{
@@ -22,9 +25,9 @@ function App() {
       // })
       // setGames(apiData)
       dispatch(allGames(apiData));
-    },[])
+    },[search !== games])
 
-  const games = useAppSelector(getGames)
+
   console.log("🚀 ~ file: App.tsx:28 ~ App ~ games:", games)
 
   // console.log("🚀 ~ file: App.tsx:28 ~ App ~ games:", gamess)
@@ -37,16 +40,17 @@ function App() {
 
   const pagesGames = games.slice(lastPage, fistPage)
 
-  // const filterGames = games.map(e=>e.title).toLocaleString().toUpperCase()
-  // console.log("🚀 ~ file: App.tsx:32 ~ App ~ filterGames:", filterGames)
   const paginado = (numberPages: number) => {
     setActualPagina(numberPages)
   }
 
+  const handleReset = (e:any) => {
+    dispatch(allGames(apiData))
+  }
   return (
     <div>
       <Nav pagesGames={games}/>
-      
+      <button onClick={handleReset}>x</button>
       <div className='cardConteiner'>
       <Cards games={pagesGames}/>
       </div>
