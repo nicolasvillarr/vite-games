@@ -18,7 +18,7 @@ export const GamesSlice = createSlice({
     reducers:{
         searchGames:(state, action:PayloadAction<dataGames[]> )=> {
             state.GamesNames = action.payload
-            console.log("🚀 ~ file: gamesSlide.ts:19 ~ state.GamesNames:", state.GamesNames)
+            // console.log("🚀 ~ file: gamesSlide.ts:19 ~ state.GamesNames:", state.GamesNames)
         },
         allGames:(state, action:PayloadAction<dataGames[]>)=>{
             state.allGames = action.payload

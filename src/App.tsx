@@ -1,7 +1,7 @@
+
 import { useEffect, useState } from 'react'
 import './styles/App.scss'
 import Nav from './components/Nav'
-import { dataGames } from './types/types'
 import Cards from './components/Cards'
 // import axios from 'axios'
 import Paginado from './helpers/Paginado'
@@ -10,12 +10,7 @@ import { allGames, getGames, searchGames } from './Store/features/gamesSlide'
 import { useAppDispatch, useAppSelector } from './Store/store'
 
 function App() {
-  const dispatch = useAppDispatch()
-  const apiData = mock
-  // const [games, setGames] = useState <dataGames[]>([])  // <Array <dataGames>>
-
-  const search = useAppSelector(getGames).GamesNames
-  const games = useAppSelector(getGames).allGames
+  const dispatch = useAppDispatch();
 
   useEffect(()=> {
     // axios.get("https://www.freetogame.com/api/games",)
@@ -24,42 +19,56 @@ function App() {
       //   setGames(data)
       // })
       // setGames(apiData)
-      dispatch(allGames(apiData));
-    },[search !== games])
+      dispatch(allGames(mock));
+    },[])
+
+  const games = useAppSelector(getGames).allGames;
+  const searchGames = useAppSelector(getGames).GamesNames;
 
 
-  console.log("🚀 ~ file: App.tsx:28 ~ App ~ games:", games)
 
-  // console.log("🚀 ~ file: App.tsx:28 ~ App ~ games:", gamess)
-  
-  const [actualPagina, setActualPagina] = useState(1)
-  const [pages] = useState(10)
+  const [actualPagina, setActualPagina] = useState(1);
+  const [pages] = useState(10);
 
-  const fistPage = actualPagina * pages
-  const lastPage = fistPage - pages
+  const firstPage = actualPagina * pages;
+  const lastPage = firstPage - pages;
 
-  const pagesGames = games.slice(lastPage, fistPage)
+  const pagesGames = searchGames.length > 0 ? searchGames.slice(lastPage, firstPage) : games.slice(lastPage, firstPage);
 
   const paginado = (numberPages: number) => {
-    setActualPagina(numberPages)
-  }
+    setActualPagina(numberPages);
+  };
 
-  const handleReset = (e:any) => {
-    dispatch(allGames(apiData))
-  }
+  const handleReset = () => {
+    dispatch(allGames(mock));
+  };
+
+  const [noResults, setNoResults] = useState(false);
+  console.log("🚀 ~ file: App.tsx:47 ~ App ~ noResults:", noResults)
+
+  
+  useEffect(() => {
+    const searchResults = searchGames.length === 0
+    setNoResults(searchResults === false);
+  }, [noResults]);
+  
   return (
     <div>
-      <Nav pagesGames={games}/>
+      <Nav pagesGames={searchGames} />
+      <Paginado
+        gamesForPage={pages}
+        allGames={ games.length}
+        paginado={paginado}
+      />
       <button onClick={handleReset}>x</button>
       <div className='cardConteiner'>
-      <Cards games={pagesGames}/>
-      </div>
-      <Paginado
-                gamesForPage={pages}
-                allGames  ={games.length}
-                paginado = {paginado}/>
-    </div>
-  )
-}
+        {
+          noResults ? <p>no hay resultados</p> : (<>  <Cards games={pagesGames} /> </>)
+          } 
+          {/* <Cards games={pagesGames} />  */}
 
+      </div>
+    </div>
+  );
+}
 export default App
