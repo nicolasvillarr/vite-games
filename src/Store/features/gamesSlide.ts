@@ -18,16 +18,14 @@ export const GamesSlice = createSlice({
     reducers:{
         searchGames:(state, action:PayloadAction<dataGames[]> )=> {
             state.GamesNames = action.payload
-            // state.allGames = action.payload
-            console.log("🚀 ~ file: gamesSlide.ts:19 ~ state.GamesNames:", state.GamesNames)
+            // console.log("🚀 ~ file: gamesSlide.ts:19 ~ state.GamesNames:", state.GamesNames)
         },
         allGames:(state, action:PayloadAction<dataGames[]>)=>{
             state.allGames = action.payload
-            console.log("🚀 ~ file: gamesSlide.ts:26 ~ state.allGames:", state.allGames)
-
+            // console.log("🚀 ~ file: gamesSlide.ts:26 ~ state.allGames:", state.allGames)
         }
     },
 })
 export default GamesSlice.reducer
-export const getGames = (state: RootState) => state.NamesSlide.allGames
+export const getGames = (state: RootState) => state.NamesSlide
 export const { searchGames, allGames } = GamesSlice.actions
