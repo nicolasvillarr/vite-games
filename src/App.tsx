@@ -6,7 +6,7 @@ import Cards from './components/Cards'
 // import axios from 'axios'
 import Paginado from './helpers/Paginado'
 import mock from "./helpers/mock/mock.json"
-import { allGames, getGames, searchGames } from './Store/features/gamesSlide'
+import { allGames, getGames } from './Store/features/gamesSlide'
 import { useAppDispatch, useAppSelector } from './Store/store'
 
 function App() {
@@ -28,46 +28,48 @@ function App() {
 
 
   const [actualPagina, setActualPagina] = useState(1);
-  const [pages] = useState(10);
+  const [pages,] = useState(10);
 
   const firstPage = actualPagina * pages;
   const lastPage = firstPage - pages;
 
   const pagesGames = searchGames.length > 0 ? searchGames.slice(lastPage, firstPage) : games.slice(lastPage, firstPage);
-
+  
   const paginado = (numberPages: number) => {
     setActualPagina(numberPages);
   };
 
   const handleReset = () => {
     dispatch(allGames(mock));
+    setActualPagina(1)
   };
-
-  const [noResults, setNoResults] = useState(false);
-  console.log("🚀 ~ file: App.tsx:47 ~ App ~ noResults:", noResults)
-
   
-  useEffect(() => {
-    const searchResults = searchGames.length === 0
-    setNoResults(searchResults === false);
-  }, [noResults]);
+  const [showNoResults, setShowNoResults] = useState(false);
+
+    useEffect(() => {
+    if (searchGames.length === 0 && searchGames.length > 0) {
+      setShowNoResults(true);
+    } else {
+      setShowNoResults(false);
+    }
+  }, [searchGames]);
   
   return (
     <div>
-      <Nav pagesGames={searchGames} />
-      <Paginado
-        gamesForPage={pages}
-        allGames={ games.length}
-        paginado={paginado}
-      />
-      <button onClick={handleReset}>x</button>
+      <button onClick={handleReset}>reset</button>
+      <Nav pagesGames={setActualPagina} />
       <div className='cardConteiner'>
         {
-          noResults ? <p>no hay resultados</p> : (<>  <Cards games={pagesGames} /> </>)
-          } 
+          !showNoResults ? (<Cards games={pagesGames} />) : (<p>no hay resultados</p> )
+        } 
           {/* <Cards games={pagesGames} />  */}
 
       </div>
+        <Paginado
+          gamesForPage={pages}
+          allGames={searchGames.length > 0? searchGames.length: games.length}
+          paginado={paginado}
+        />
     </div>
   );
 }

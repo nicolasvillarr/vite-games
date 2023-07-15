@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { addDetails, getDetails } from "../Store/features/detailsSlide"
 import { useAppDispatch, useAppSelector } from "../Store/store"
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 export default function DetailsCard() {
 const id = useLocation().pathname.replace("/details/", "") 
@@ -46,6 +46,7 @@ console.log(data.minimum_system_requirements)
   // console.log("🚀 ~ file: DetailsCard.tsx:24 ~ DetailsCard ~ info:", info)
   return (
     <>
+    <Link to={"/"}>volver</Link>
     <div className="text-center bg-center">
     <h1>{info?.title}</h1>
 <img src={info?.thumbnail} width={500} height={300} alt="" />

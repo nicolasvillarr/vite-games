@@ -5,7 +5,7 @@ import { BsChevronDown } from 'react-icons/bs';
 import SearchBar from "./SearchBar";
 import { PropsPagesGames } from "../types/types";
 
-export default function Nav({pagesGames}:PropsPagesGames) {
+export default function Nav({pagesGames}:any) {
   function classNames(...classes: [string, string]) {
     return classes.filter(Boolean).join(' ')
   }
